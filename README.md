@@ -66,3 +66,23 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+# Justice App (name tbd)
+* person starting process (trial)
+	* access with email and password
+	* opens a process judicial
+	* put audio files, text files, text posts etc
+	* gives their version of events
+	* lawyer goes over stuff
+	* can search for lawyer in a list of lawyers on the app
+* Lawyer can register and be associated to cases
+* tribunal / court
+	* calls forward the person being sued
+	* person can reject tribunal
+	* there is a judge
+		* can give verdicts/sentance
+* person being processed (on trial)
+  * person being processe also can attach their version and files to the case
+* The process (trial/litigation/lawsuit/case) is the key part
+	* everything is related to this process
