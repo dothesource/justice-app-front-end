@@ -5,11 +5,10 @@ const usersPathTo = {
     return Api.request({
       url: '/users/' + options.id + '.json',
       method: 'get',
-      params: options.params
+      params: options.params,
     })
-  }
+  },
 }
-
 
 export default usersPathTo
 

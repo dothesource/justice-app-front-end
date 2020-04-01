@@ -1,24 +1,24 @@
-import React from 'react';
-import { fade, makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import Badge from '@material-ui/core/Badge';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
+import React from 'react'
+import { fade, makeStyles } from '@material-ui/core/styles'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import IconButton from '@material-ui/core/IconButton'
+import Typography from '@material-ui/core/Typography'
+import Badge from '@material-ui/core/Badge'
+import MenuItem from '@material-ui/core/MenuItem'
+import Menu from '@material-ui/core/Menu'
+import MenuIcon from '@material-ui/icons/Menu'
 // import AccountCircle from '@material-ui/icons/AccountCircle';
-import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import { connect } from 'react-redux';
-import { logout } from '../actions/authActions';
-import { FormattedMessage } from 'react-intl';
-import { setSidebar } from '../actions/uiActions';
+import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew'
+import MailIcon from '@material-ui/icons/Mail'
+import NotificationsIcon from '@material-ui/icons/Notifications'
+import MoreIcon from '@material-ui/icons/MoreVert'
+import { connect } from 'react-redux'
+import { logout } from '../actions/authActions'
+import { FormattedMessage } from 'react-intl'
+import { setSidebar } from '../actions/uiActions'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
   },
@@ -78,40 +78,40 @@ const useStyles = makeStyles(theme => ({
       display: 'none',
     },
   },
-}));
+}))
 
 function Header(props) {
-  const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const classes = useStyles()
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
 
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const isMenuOpen = Boolean(anchorEl)
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
 
-  const handleLogoutMenuOpen = event => {
+  const handleLogoutMenuOpen = (event) => {
     localStorage.setItem('current_user', JSON.stringify({}))
     props.logout()
     // setAnchorEl(event.currentTarget);
-  };
+  }
 
   const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
+    setMobileMoreAnchorEl(null)
+  }
 
   const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
+    setAnchorEl(null)
+    handleMobileMenuClose()
+  }
 
   const openSidebar = () => {
     props.setSidebar(true)
   }
 
-  const handleMobileMenuOpen = event => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
+  const handleMobileMenuOpen = (event) => {
+    setMobileMoreAnchorEl(event.currentTarget)
+  }
 
-  const menuId = 'primary-search-account-menu';
+  const menuId = 'primary-search-account-menu'
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -120,14 +120,13 @@ function Header(props) {
       keepMounted
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
+      onClose={handleMenuClose}>
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
-  );
+  )
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const mobileMenuId = 'primary-search-account-menu-mobile'
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
@@ -136,21 +135,19 @@ function Header(props) {
       keepMounted
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
+      onClose={handleMobileMenuClose}>
       <MenuItem onClick={handleLogoutMenuOpen}>
         <IconButton
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
-          color="inherit"
-        >
+          color="inherit">
           <PowerSettingsNewIcon />
         </IconButton>
         <p>Logout</p>
       </MenuItem>
     </Menu>
-  );
+  )
 
   return (
     <div className={classes.grow}>
@@ -161,8 +158,7 @@ function Header(props) {
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
-            onClick={openSidebar}
-          >
+            onClick={openSidebar}>
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
@@ -186,8 +182,7 @@ function Header(props) {
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleLogoutMenuOpen}
-              color="inherit"
-            >
+              color="inherit">
               <PowerSettingsNewIcon />
             </IconButton>
           </div>
@@ -197,8 +192,7 @@ function Header(props) {
               aria-controls={mobileMenuId}
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
+              color="inherit">
               <MoreIcon />
             </IconButton>
           </div>
@@ -207,18 +201,15 @@ function Header(props) {
       {renderMobileMenu}
       {renderMenu}
     </div>
-  );
+  )
 }
 
 const mapStateToProps = (state) => {
   return {
-    current_user: state.reducers.current_user
+    current_user: state.reducers.current_user,
   }
 }
 
 const mapDispatchToProps = { logout, setSidebar }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Header)
+export default connect(mapStateToProps, mapDispatchToProps)(Header)
