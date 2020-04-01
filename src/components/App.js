@@ -1,16 +1,14 @@
-import React from 'react'
-import logo from '../assets/logo.svg'
-import './App.css'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import { ThemeProvider } from '@material-ui/styles'
 import { createMuiTheme } from '@material-ui/core/styles'
-import { SignIn, Inputs, SignUp } from '../containers'
-import { Header, MainNavigation, Sidebar } from './'
-import { Redirect } from 'react-router'
+import { ThemeProvider } from '@material-ui/styles'
+import React from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { setUser } from '../actions/authActions'
-import { Drawer } from '@material-ui/core'
+import { Inputs, SignIn, SignUp } from '../containers'
+import { Header, MainNavigation, Sidebar } from './'
+import './App.css'
 
 const theme = createMuiTheme({
   palette: {

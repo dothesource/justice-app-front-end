@@ -6,7 +6,7 @@ import { setInputs } from '../actions/inputActions'
 function InputsList(props) {
   useEffect(() => {
     props.setInputs()
-  }, [])
+  }, [props])
 
   return (
     <div>
