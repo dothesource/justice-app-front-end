@@ -1,7 +1,7 @@
-import React from 'react';
-import {SignUpForm} from '../components';
-import { Redirect } from "react-router";
-import { connect } from 'react-redux';
+import React from 'react'
+import { SignUpForm } from '../components'
+import { Redirect } from 'react-router'
+import { connect } from 'react-redux'
 
 function SignUp(props) {
   const loggedIn = props.current_user && props.current_user.token
@@ -11,15 +11,13 @@ function SignUp(props) {
       {loggedIn ? <Redirect to="/inputs" /> : ''}
       <SignUpForm></SignUpForm>
     </div>
-  );
+  )
 }
 
 const mapStateToProps = (state) => {
   return {
-    current_user: state.reducers.current_user
+    current_user: state.reducers.current_user,
   }
 }
 
-export default connect(
-  mapStateToProps
-)(SignUp)
+export default connect(mapStateToProps)(SignUp)

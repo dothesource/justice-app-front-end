@@ -1,29 +1,27 @@
-import React from 'react';
-import logo from '../assets/logo.svg';
-import './App.css';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/styles';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { SignIn, Inputs, SignUp } from '../containers';
-import { Header, MainNavigation, Sidebar } from './';
-import { Redirect } from "react-router";
-import { connect } from 'react-redux';
-import { setUser } from '../actions/authActions';
-import { Drawer } from '@material-ui/core';
-
-
+import React from 'react'
+import logo from '../assets/logo.svg'
+import './App.css'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import { ThemeProvider } from '@material-ui/styles'
+import { createMuiTheme } from '@material-ui/core/styles'
+import { SignIn, Inputs, SignUp } from '../containers'
+import { Header, MainNavigation, Sidebar } from './'
+import { Redirect } from 'react-router'
+import { connect } from 'react-redux'
+import { setUser } from '../actions/authActions'
+import { Drawer } from '@material-ui/core'
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#e45306'
+      main: '#e45306',
     },
     secondary: {
-      main: '#cd4a05'
-    }
-  }
-});
+      main: '#cd4a05',
+    },
+  },
+})
 
 function App(props) {
   const loggedIn = props.current_user && props.current_user.token
@@ -35,18 +33,18 @@ function App(props) {
         <Router>
           <Switch>
             <Route path="/signin">
-              <SignIn/>
+              <SignIn />
             </Route>
             <Route path="/signup">
-              <SignUp/>
+              <SignUp />
             </Route>
             <Route path="/">
               {loggedIn ? '' : <Redirect to="/signin" />}
-              <Header/>
-              <Sidebar/>
+              <Header />
+              <Sidebar />
               <Switch>
                 <Route path="/inputs">
-                  <Inputs/>
+                  <Inputs />
                 </Route>
               </Switch>
               {/* <header className="App-header">
@@ -63,25 +61,21 @@ function App(props) {
                   Learn Reactoo
                 </a>
               </header> */}
-              <MainNavigation/>
+              <MainNavigation />
             </Route>
           </Switch>
         </Router>
       </ThemeProvider>
-
     </div>
-  );
+  )
 }
 
 const mapStateToProps = (state) => {
   return {
-    current_user: state.reducers.current_user
+    current_user: state.reducers.current_user,
   }
 }
 
 const mapDispatchToProps = { setUser }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)
