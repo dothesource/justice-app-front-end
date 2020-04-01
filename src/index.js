@@ -14,7 +14,7 @@ const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 // todo: fazer de outro jeito
 const current_user = {
-  reducers: { current_user: JSON.parse(localStorage.getItem('current_user')) },
+  reducers: { current_user: JSON.parse(localStorage.getItem('current_user')) }
 }
 
 const store = createStore(
@@ -25,16 +25,29 @@ const store = createStore(
 
 // 'id,code,name,input_category_id,acquisition_unit_level_1_id,acquisition_unit_level_2_id,acquisition_unit_level_3_id,efficiency,created_at,updated_at,deleted_at,last_price,last_acquisition_id,package,in_stock,count_unit_id'
 
-ReactDOM.render(
-  <IntlProvider
-    locale={navigator.language}
-    messages={messages[navigator.language]}>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </IntlProvider>,
-  document.getElementById('root')
-)
+function EntryPoint() {
+  const navigatorLocale =
+    (navigator.languages && navigator.languages[0]) ||
+    navigator.language ||
+    navigator.userLanguage ||
+    'en'
+
+  const locale = messages.hasOwnProperty(navigatorLocale)
+    ? navigatorLocale
+    : 'en'
+
+  console.log(navigatorLocale, locale)
+
+  return (
+    <IntlProvider locale={locale} messages={messages[locale]}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </IntlProvider>
+  )
+}
+
+ReactDOM.render(EntryPoint(), document.getElementById('root'))
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

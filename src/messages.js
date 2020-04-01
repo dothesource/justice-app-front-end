@@ -7,7 +7,7 @@ export default {
     'signInForm.forgotPassword': 'Esqueceu a senha?',
     'signInForm.noAccount': 'Não possuo conta',
   },
-  'en-US': {
+  en: {
     'navbar.title': 'Navbar ingrishh',
     'signInForm.signIn': 'Sign in',
     'signInForm.emailLabel': 'Email address',
