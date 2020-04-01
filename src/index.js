@@ -36,8 +36,6 @@ function EntryPoint() {
     ? navigatorLocale
     : 'en'
 
-  console.log(navigatorLocale, locale)
-
   return (
     <IntlProvider locale={locale} messages={messages[locale]}>
       <Provider store={store}>
