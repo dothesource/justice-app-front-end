@@ -18,7 +18,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <span>Menu Control</span> {new Date().getFullYear()}
+      <span>NuLeaf</span> {new Date().getFullYear()}
       {'.'}
     </Typography>
   )
