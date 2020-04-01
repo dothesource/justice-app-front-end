@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 
 function SignInForm(props) {
   const classes = useStyles()
-  const intl = useIntl()
+  const { formatMessage } = useIntl()
   const [formUser, setFormUser] = useState({ email: '', password: '' })
 
   const submitHandler = (e) => {
@@ -76,7 +76,7 @@ function SignInForm(props) {
             required
             fullWidth
             id="email"
-            label={intl.formatMessage({ id: 'signInForm.emailLabel' })}
+            label={formatMessage({ id: 'signInForm.emailLabel' })}
             name="email"
             autoComplete="email"
             value={formUser.email}
@@ -91,7 +91,7 @@ function SignInForm(props) {
             required
             fullWidth
             name="password"
-            label={intl.formatMessage({ id: 'signInForm.passwordLabel' })}
+            label={formatMessage({ id: 'signInForm.passwordLabel' })}
             type="password"
             id="password"
             autoComplete="current-password"
