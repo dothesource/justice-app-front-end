@@ -21,8 +21,8 @@ const theme = createMuiTheme({
   },
 })
 
-function App(props) {
-  const loggedIn = props.current_user && props.current_user.token
+function App({ current_user }) {
+  const loggedIn = current_user && current_user.token
 
   return (
     <div className="App">
@@ -45,20 +45,6 @@ function App(props) {
                   <Inputs />
                 </Route>
               </Switch>
-              {/* <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                  <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                  </p>
-                <a
-                  className="App-link"
-                  href="https://reactjs.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Learn Reactoo
-                </a>
-              </header> */}
               <MainNavigation />
             </Route>
           </Switch>

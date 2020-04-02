@@ -11,12 +11,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { setSidebar } from '../actions/uiActions'
 
-function Sidebar(props) {
+function Sidebar({ sidebarOpen, setSidebar }) {
   const handleDrawerClose = () => {
-    props.setSidebar(!props.sidebarOpen)
+    setSidebar(!sidebarOpen)
   }
   return (
-    <Drawer variant="persistent" anchor="left" open={props.sidebarOpen}>
+    <Drawer variant="persistent" anchor="left" open={sidebarOpen}>
       <div>
         <IconButton onClick={handleDrawerClose}>
           <ChevronLeftIcon />

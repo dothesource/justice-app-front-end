@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function Header(props) {
+function Header({ logout, setSidebar }) {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
@@ -90,7 +90,7 @@ function Header(props) {
 
   const handleLogoutMenuOpen = (event) => {
     localStorage.setItem('current_user', JSON.stringify({}))
-    props.logout()
+    logout()
     // setAnchorEl(event.currentTarget);
   }
 
@@ -104,7 +104,7 @@ function Header(props) {
   }
 
   const openSidebar = () => {
-    props.setSidebar(true)
+    setSidebar(true)
   }
 
   const handleMobileMenuOpen = (event) => {
