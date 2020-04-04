@@ -6,13 +6,9 @@ export const Api = axios.create({
 })
 
 Api.interceptors.request.use(async (config) => {
-  var token = ''
-  if (currentUser()) {
-    token = currentUser().token
-  }
-  if (token) {
-    config.headers['X-User-Token'] = token
-    config.headers['X-User-Email'] = currentUser().user.email
+  if (currentUser() && currentUser().token) {
+    config.headers['X-User-Token'] = currentUser().token
+    config.headers['X-User-Email'] = currentUser().email
   }
   return config
 })
