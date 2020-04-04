@@ -1,27 +1,22 @@
 import React from 'react'
-import { SignInForm } from '../components'
-import { Redirect } from 'react-router'
-import { connect } from 'react-redux'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import { setUser } from '../actions/authActions'
+import SignInForm from '../components/SignInForm'
 
-function SignIn({ current_user, setUser }) {
-  const loggedIn = current_user && current_user.token
+function SignIn() {
+  const loggedIn = useSelector((state) => {
+    const currentUser = state.reducers.current_user
+    return currentUser && currentUser.token
+  })
+  const dispatch = useDispatch()
+  const dispatchSetUser = (user) => dispatch(setUser(user))
 
-  return (
-    <div>
-      {loggedIn ? <Redirect to="/inputs" /> : ''}
-      <SignInForm setUser={setUser}></SignInForm>
-    </div>
+  return loggedIn ? (
+    <Redirect to="/inputs" />
+  ) : (
+    <SignInForm setUser={dispatchSetUser} />
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    current_user: state.reducers.current_user,
-  }
-}
-
-const mapDispatchToProps = { setUser }
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn)
+export default SignIn

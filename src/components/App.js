@@ -2,10 +2,9 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import { createMuiTheme } from '@material-ui/core/styles'
 import { ThemeProvider } from '@material-ui/styles'
 import React from 'react'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Redirect } from 'react-router'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { setUser } from '../actions/authActions'
 import { Inputs, SignIn, SignUp } from '../containers'
 import { Header, MainNavigation, Sidebar } from './'
 import './App.css'
@@ -21,8 +20,11 @@ const theme = createMuiTheme({
   },
 })
 
-function App({ current_user }) {
-  const loggedIn = current_user && current_user.token
+function App() {
+  const loggedIn = useSelector((state) => {
+    const currentUser = state.reducers.current_user
+    return currentUser && currentUser.token
+  })
 
   return (
     <div className="App">
@@ -37,7 +39,7 @@ function App({ current_user }) {
               <SignUp />
             </Route>
             <Route path="/">
-              {loggedIn ? '' : <Redirect to="/signin" />}
+              {loggedIn ? null : <Redirect to="/signin" />}
               <Header />
               <Sidebar />
               <Switch>
@@ -54,12 +56,4 @@ function App({ current_user }) {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    current_user: state.reducers.current_user,
-  }
-}
-
-const mapDispatchToProps = { setUser }
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default App

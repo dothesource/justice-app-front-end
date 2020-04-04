@@ -1,6 +1,6 @@
 import React from 'react'
 
-function SignUpForm(props) {
+function SignUpForm() {
   return <div>Aqui será o SignUp form</div>
 }
 
