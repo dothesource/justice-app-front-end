@@ -1,21 +1,21 @@
-import React from 'react'
-import { fade, makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import IconButton from '@material-ui/core/IconButton'
-import Typography from '@material-ui/core/Typography'
 import Badge from '@material-ui/core/Badge'
-import MenuItem from '@material-ui/core/MenuItem'
+import IconButton from '@material-ui/core/IconButton'
 import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
+import { fade, makeStyles } from '@material-ui/core/styles'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
+import MailIcon from '@material-ui/icons/Mail'
 import MenuIcon from '@material-ui/icons/Menu'
+import MoreIcon from '@material-ui/icons/MoreVert'
+import NotificationsIcon from '@material-ui/icons/Notifications'
 // import AccountCircle from '@material-ui/icons/AccountCircle';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew'
-import MailIcon from '@material-ui/icons/Mail'
-import NotificationsIcon from '@material-ui/icons/Notifications'
-import MoreIcon from '@material-ui/icons/MoreVert'
-import { connect } from 'react-redux'
-import { logout } from '../actions/authActions'
+import React from 'react'
 import { FormattedMessage } from 'react-intl'
+import { useDispatch } from 'react-redux'
+import { logout } from '../actions/authActions'
 import { setSidebar } from '../actions/uiActions'
 
 const useStyles = makeStyles((theme) => ({
@@ -80,17 +80,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function Header({ logout, setSidebar }) {
+function Header() {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
+
+  const dispatch = useDispatch()
 
   const isMenuOpen = Boolean(anchorEl)
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
 
   const handleLogoutMenuOpen = (event) => {
     localStorage.setItem('current_user', JSON.stringify({}))
-    logout()
+    dispatch(logout())
     // setAnchorEl(event.currentTarget);
   }
 
@@ -104,7 +106,7 @@ function Header({ logout, setSidebar }) {
   }
 
   const openSidebar = () => {
-    setSidebar(true)
+    dispatch(setSidebar(true))
   }
 
   const handleMobileMenuOpen = (event) => {
@@ -204,12 +206,4 @@ function Header({ logout, setSidebar }) {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    current_user: state.reducers.current_user,
-  }
-}
-
-const mapDispatchToProps = { logout, setSidebar }
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header)
+export default Header
