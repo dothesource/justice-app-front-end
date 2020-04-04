@@ -5,13 +5,13 @@ import { connect } from 'react-redux'
 
 import { setUser } from '../actions/authActions'
 
-function SignIn({ current_user }) {
+function SignIn({ current_user, setUser }) {
   const loggedIn = current_user && current_user.token
 
   return (
     <div>
       {loggedIn ? <Redirect to="/inputs" /> : ''}
-      <SignInForm></SignInForm>
+      <SignInForm setUser={setUser}></SignInForm>
     </div>
   )
 }
