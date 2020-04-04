@@ -8,12 +8,14 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import MailIcon from '@material-ui/icons/Mail'
 import InboxIcon from '@material-ui/icons/MoveToInbox'
 import React from 'react'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setSidebar } from '../actions/uiActions'
 
-function Sidebar({ sidebarOpen, setSidebar }) {
+function Sidebar() {
+  const dispatch = useDispatch()
+  const sidebarOpen = useSelector((state) => state.ui.sidebarOpen)
   const handleDrawerClose = () => {
-    setSidebar(!sidebarOpen)
+    dispatch(setSidebar(!sidebarOpen))
   }
   return (
     <Drawer variant="persistent" anchor="left" open={sidebarOpen}>
@@ -37,12 +39,4 @@ function Sidebar({ sidebarOpen, setSidebar }) {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    sidebarOpen: state.ui.sidebarOpen,
-  }
-}
-
-const mapDispatchToProps = { setSidebar }
-
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)
+export default Sidebar
