@@ -3,8 +3,10 @@ import { SignInForm } from '../components'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
 
-function SignIn(props) {
-  const loggedIn = props.current_user && props.current_user.token
+import { setUser } from '../actions/authActions'
+
+function SignIn({ current_user }) {
+  const loggedIn = current_user && current_user.token
 
   return (
     <div>
@@ -20,4 +22,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(SignIn)
+const mapDispatchToProps = { setUser }
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn)

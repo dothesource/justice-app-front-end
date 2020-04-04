@@ -3,15 +3,15 @@ import { connect } from 'react-redux'
 import { setInputs } from '../actions/inputActions'
 // import { usersPathTo } from '../utils/Api';
 
-function InputsList(props) {
+function InputsList({ inputs, setInputs }) {
   useEffect(() => {
-    props.setInputs()
-  }, [props])
+    setInputs()
+  }, [setInputs])
 
   return (
     <div>
-      {props.inputs
-        ? props.inputs.map((input, index) => (
+      {inputs
+        ? inputs.map((input, index) => (
             <div className="input" key={index}>
               {input.name}
             </div>
