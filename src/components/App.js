@@ -23,7 +23,7 @@ const theme = createMuiTheme({
 function App() {
   const loggedIn = useSelector((state) => {
     const currentUser = state.reducers.current_user
-    return currentUser && currentUser.token
+    return currentUser && currentUser.authentication_token
   })
 
   return (

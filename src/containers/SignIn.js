@@ -7,7 +7,7 @@ import SignInForm from '../components/SignInForm'
 function SignIn() {
   const loggedIn = useSelector((state) => {
     const currentUser = state.reducers.current_user
-    return currentUser && currentUser.token
+    return currentUser && currentUser.authentication_token
   })
   const dispatch = useDispatch()
   const dispatchSetUser = (user) => dispatch(setUser(user))

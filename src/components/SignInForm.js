@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import React, { useState } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
+import { setUser } from '../actions/authActions'
 
 function Copyright() {
   return (
