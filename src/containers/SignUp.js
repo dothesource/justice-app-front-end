@@ -7,7 +7,7 @@ import SignUpForm from '../components/SignUpForm'
 function SignUp() {
   const loggedIn = useSelector((state) => {
     const currentUser = state.reducers.current_user
-    return currentUser && currentUser.token
+    return currentUser && currentUser.authentication_token
   })
 
   return loggedIn ? <Redirect to="/inputs" /> : <SignUpForm />
